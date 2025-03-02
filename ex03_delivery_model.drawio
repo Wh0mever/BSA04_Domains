@@ -1,0 +1,72 @@
+<mxfile host="app.diagrams.net" modified="2024-03-20T12:00:00.000Z" agent="Mozilla/5.0" version="21.1.9" type="device">
+  <diagram id="delivery-model" name="Система доставки">
+    <mxGraphModel dx="1422" dy="798" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- Сущности -->
+        <mxCell id="order" value="ORDER&#xa;order_id (PK)&#xa;pickup_address&#xa;delivery_address&#xa;assembly_time&#xa;desired_delivery_time&#xa;status&#xa;delivery_cost" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="160" height="140" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="courier" value="COURIER&#xa;courier_id (PK)&#xa;full_name&#xa;contacts&#xa;status&#xa;location&#xa;rating" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="40" width="160" height="120" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="customer" value="CUSTOMER&#xa;customer_id (PK)&#xa;name&#xa;contact_person&#xa;phone&#xa;email&#xa;address" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="40" width="160" height="120" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="delivery" value="DELIVERY&#xa;delivery_id (PK)&#xa;order_id (FK)&#xa;courier_id (FK)&#xa;start_time&#xa;end_time&#xa;status&#xa;comment" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="240" width="160" height="140" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="payment" value="PAYMENT&#xa;payment_id (PK)&#xa;order_id (FK)&#xa;amount&#xa;type&#xa;status&#xa;date" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="240" width="160" height="120" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="user" value="USER&#xa;user_id (PK)&#xa;login&#xa;password&#xa;role&#xa;status&#xa;created_at" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="240" width="160" height="120" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="report" value="REPORT&#xa;report_id (PK)&#xa;type&#xa;period&#xa;created_at&#xa;status&#xa;data" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="440" width="160" height="120" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="payroll" value="PAYROLL&#xa;payroll_id (PK)&#xa;courier_id (FK)&#xa;period&#xa;amount&#xa;status&#xa;date" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="440" width="160" height="120" as="geometry" />
+        </mxCell>
+        
+        <!-- Связи -->
+        <mxCell id="order-delivery" value="1" style="endArrow=ERone;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endFill=0;" edge="1" parent="1" source="order" target="delivery">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="courier-delivery" value="1" style="endArrow=ERoneToMany;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endFill=0;" edge="1" parent="1" source="courier" target="delivery">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="customer-order" value="1" style="endArrow=ERoneToMany;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endFill=0;" edge="1" parent="1" source="customer" target="order">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="order-payment" value="1" style="endArrow=ERone;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endFill=0;" edge="1" parent="1" source="order" target="payment">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="courier-payroll" value="1" style="endArrow=ERoneToMany;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endFill=0;" edge="1" parent="1" source="courier" target="payroll">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="user-courier" value="1" style="endArrow=ERone;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endFill=0;" edge="1" parent="1" source="user" target="courier">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="report-delivery" value="M" style="endArrow=ERmany;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endFill=0;" edge="1" parent="1" source="report" target="delivery">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile> 
